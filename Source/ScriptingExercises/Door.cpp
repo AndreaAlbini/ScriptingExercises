@@ -9,7 +9,7 @@ ADoor::ADoor()
 	DefaultRoot = CreateDefaultSubobject<USceneComponent>("Default Root");
 	RootComponent = DefaultRoot;
 
-	DoorMesh = CreateDefaultSubobject<UStaticMeshComponent>("Coin Mesh");
+	DoorMesh = CreateDefaultSubobject<UStaticMeshComponent>("Door Mesh");
 	DoorMesh->SetupAttachment(DefaultRoot);
 	
  	// Set this actor to call Tick() every frame.  You can turn this off to improve performance if you don't need it.
