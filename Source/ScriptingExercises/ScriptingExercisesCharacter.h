@@ -15,6 +15,10 @@ struct FInputActionValue;
 
 DECLARE_LOG_CATEGORY_EXTERN(LogTemplateCharacter, Log, All);
 
+//DECLARE_DYNAMIC_MULTICAST_SPARSE_DELEGATE_OneParam(FOnCoinCollected, int32, CoinCollectedValue);
+DECLARE_DYNAMIC_MULTICAST_DELEGATE_OneParam(FOnCoinCollected, int32, CoinCollectedValue);
+DECLARE_DYNAMIC_MULTICAST_DELEGATE_OneParam(FOnTotalCoinsEnough, int32, TotalCoins);
+
 UCLASS(config=Game)
 class AScriptingExercisesCharacter : public ACharacter
 {
@@ -78,6 +82,14 @@ public:
 	int32 TotalCoins;
 	
 	UFUNCTION(BlueprintCallable,Category="Coins Collection")
-	void CollectCoin(int32 Value);
+	void AddCoin(int32 Value);
+	UFUNCTION(BlueprintCallable,Category="Coins Collection")
+	void RemoveCoin(int32 Value);
+
+	UPROPERTY()
+	FOnCoinCollected OnCoinCollected;
+	
+	UPROPERTY()
+	FOnTotalCoinsEnough OnTotalCoinsEnough;
 };
 

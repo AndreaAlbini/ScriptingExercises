@@ -15,7 +15,7 @@ ACoin::ACoin()
 	CoinMesh = CreateDefaultSubobject<UStaticMeshComponent>("Coin Mesh");
 	CoinMesh->SetupAttachment(DefaultRoot);
 	CoinMesh->SetCollisionProfileName(TEXT("OverlapAllDynamic"));
-	CoinMesh->OnComponentBeginOverlap.AddDynamic(this, &ACoin::ACoin::OnCoinBeginOverlap);
+	CoinMesh->OnComponentBeginOverlap.AddDynamic(this, &ACoin::OnCoinBeginOverlap);
 
 	//BoxCollision = CreateDefaultSubobject<UBoxComponent>("Box Collision");
 	//BoxCollision->SetupAttachment(DefaultRoot);
@@ -46,7 +46,7 @@ void ACoin::OnCoinBeginOverlap(UPrimitiveComponent* OverlappedComponent, AActor*
 	AScriptingExercisesCharacter* PlayerCharacter = Cast<AScriptingExercisesCharacter>(OtherActor);
 	if(PlayerCharacter)
 	{
-		PlayerCharacter->CollectCoin(CoinValue);
+		PlayerCharacter->AddCoin(CoinValue);
 		Destroy();
 	}
 	else

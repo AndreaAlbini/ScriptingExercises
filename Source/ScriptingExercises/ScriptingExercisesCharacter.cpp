@@ -69,15 +69,22 @@ void AScriptingExercisesCharacter::BeginPlay()
 	}
 }
 
-void AScriptingExercisesCharacter::CollectCoin(int32 Value)
+void AScriptingExercisesCharacter::AddCoin(int32 Value)
 {
 	TotalCoins += Value;
-	UE_LOG(LogTemp,Warning,TEXT("Character has %d Coins"), TotalCoins);
+	/*UE_LOG(LogTemp,Warning,TEXT("Character has %d Coins"), TotalCoins);
 	if(GEngine)
 	{
 		const FString DebugMessage = "Character has "+ FString::FromInt(TotalCoins) + " coins";
 		GEngine->AddOnScreenDebugMessage(1,5.0,FColor::Purple,DebugMessage);
-	}
+	}*/
+	OnCoinCollected.Broadcast(Value);
+	OnTotalCoinsEnough.Broadcast((TotalCoins));
+}
+
+void AScriptingExercisesCharacter::RemoveCoin(int32 Value)
+{
+	TotalCoins -= Value;
 }
 
 //////////////////////////////////////////////////////////////////////////
